@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html  ng-app="todoApp"> <!-- Setting the angular.module "todoApp" to work with the html document -->
+<head>
+	<title>To Do List</title>
+
+	<!-- Materialize.css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	<!-- Angular.js -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<!-- Linking js/app.js -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<!-- Materialize icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Linking css/styles.css -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body ng-controller="TodoListController as todoList"> <!-- Setting the .controller "TodoListController" to work with the <body> -->
+<main>
+	<div class= "container">
+		<div class="row">
+			<div class="col s6">
+				<h2>My To Do List</h2>
+				<div class="row">
+				    <div class="input-field col s6">
+					    <form id="add-form" ng-submit="todoList.addTodo()"> <!-- Telling the function "todoList.addTodo()" to fire when submit button is clicked -->
+					      <input ng-model="todoList.todoText" id="task" type="text" class="validate"> <!-- Setting form input value to "todoList.todoText" -->
+					      <label class="active" for="task">Task</label>
+					      <button class="waves-effect waves-light btn" type="submit"><i class="material-icons">add_circle_outline</i></button>
+					    </form>
+					    <button ng-click="todoList.remove()" class="waves-effect waves-light btn red"><i class="material-icons">delete</i></button> <!-- Telling function "todolist.remove()" to fire when delete button is clicked -->
+				    </div>
+				</div>
+				<span> {{ todoList.remaining }} of {{ todoList.todoItems.length }} remaining</span>
+				<ul>
+					<li ng-repeat="todo in todoList.todoItems"> <!-- Telling each <li> to display the items of "todoList.todoItems" -->
+						<input type="checkbox" ng-model="todo.done" id="todoItem-{{ $index }}" /> <!--Giving each checkbox an individual id -->
+      					<label class="done-{{ todo.done }}" for="todoItem-{{ $index }}">{{ todo.name }}</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</main>
+
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<!-- Materialize.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+</body>
+</html>
