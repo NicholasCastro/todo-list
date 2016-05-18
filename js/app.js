@@ -27,9 +27,18 @@ angular.module("todoApp", [])
 	todoList.remaining = function() {
 		var incompleteCount = 0;
 		angular.forEach(todoList.todoItems, function(todo) {
-			incompletecount += todo.done;
+			incompleteCount += todo.done ? 0 : 1;
 		})
+
 		return incompleteCount
 	} 
+
+	todoList.todoTitle = [ //Setting default todoList.todoTitle
+		{name: "My Todo List"}
+	]
+	
+	todoList.changeTitle = function() { //Changes todoList.todoTitle to value of todoList.newTitle
+		todoList.todoTitle = [{ name: todoList.newTitle }]
+	}
 
 });

@@ -10,3 +10,19 @@
 	color: grey;
 	text-decoration: line-through;
 }
+
+#head {
+	background-image: url(../img/head.jpg);
+	width: 765px;
+	height: 160px;
+}
+
+#paper {
+	background-image: url(../img/paper.jpg);
+	margin-left: 1px;
+	width: 765px;
+}
+
+body {
+	background-image: url(../img/pink_rice.png);
+}
