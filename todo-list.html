@@ -16,11 +16,14 @@
 </head>
 <body ng-controller="TodoListController as todoList"> <!-- Setting the .controller "TodoListController" to work with the <body> -->
 <main>
-	<div class= "container">
-		<div class="row">
-			<div id="head"> <!-- Head image -->
+
+	<div class= "container"> <!-- Large Display -->
+		<div class="row hide-on-med-and-down">
+		<div class="col l6 offset-l2">
+			<div id="head" class="col s6"> <!-- Head image -->
 			</div>
 			<div id="paper" class="col s6">
+			<div class="row">
 				<div class="input-field col s12">
 					<form  ng-submit="todoList.changeTitle()"> <!--fires function todoList.changeTitle on submit -->
 				      <input ng-model="todoList.newTitle" value="My Todo List" id="first_name2" type="text" class="validate"> <!-- Setting form input value to todoList.newTitle -->
@@ -28,12 +31,56 @@
 	      			  <button class="waves-effect waves-light btn" type="submit"><i class="material-icons">add_circle_outline</i></button>
 	      			</form>
 			    </div>
+			    <div class="col s12">
 			    <ul>
 					<li ng-repeat="todo in todoList.todoTitle">
 						<h2>{{ todo.name }}</h2>
 					</li>
 				</ul>
-				<div class="row">
+				</div>
+				    <div class="input-field col s12">
+					    <form id="add-form" ng-submit="todoList.addTodo()"> <!-- Telling the function "todoList.addTodo()" to fire when submit button is clicked -->
+					      <input ng-model="todoList.todoText" id="task" type="text" class="validate"> <!-- Setting form input value to "todoList.todoText" -->
+					      <label class="active" for="task">Task</label>
+					      <button class="waves-effect waves-light btn" type="submit"><i class="material-icons">add_circle_outline</i></button>
+					    </form>
+					    <button ng-click="todoList.remove()" class="waves-effect waves-light btn red"><i class="material-icons">delete</i></button> <!-- Telling function "todolist.remove()" to fire when delete button is clicked -->
+				    </div>
+				</div>
+				<span> {{ todoList.remaining() }} of {{ todoList.todoItems.length }} remaining</span> <!-- sets first value to output of function todoList.remaining, and sets second value to the number of items in todoList.todoItems -->
+				<ul>
+					<li ng-repeat="todo in todoList.todoItems"> <!-- Telling each <li> to display the items of "todoList.todoItems" -->
+						<input type="checkbox" ng-model="todo.done" id="todoItem-{{ $index }}" /> <!--Giving each checkbox an individual id -->
+      					<label class="done-{{ todo.done }}" for="todoItem-{{ $index }}">{{ todo.name }}</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+		<div class="row hide-on-large-only"> <!-- Small Display -->
+		<div class="col s6 offset-s1">
+			<div id="head" class="col s6"> <!-- Head image -->
+			</div>
+			<div id="paper" class="col s6">
+			<div class="row">
+				<div class="input-field col s12">
+					<form  ng-submit="todoList.changeTitle()"> <!--fires function todoList.changeTitle on submit -->
+				      <input ng-model="todoList.newTitle" value="My Todo List" id="first_name2" type="text" class="validate"> <!-- Setting form input value to todoList.newTitle -->
+	      			  <label class="active" for="first_name2">Title</label>
+	      			  <button class="waves-effect waves-light btn" type="submit"><i class="material-icons">add_circle_outline</i></button>
+	      			</form>
+			    </div>
+			    <div class="col s12">
+			    <ul>
+					<li ng-repeat="todo in todoList.todoTitle">
+						<h2>{{ todo.name }}</h2>
+					</li>
+				</ul>
+				</div>
 				    <div class="input-field col s12">
 					    <form id="add-form" ng-submit="todoList.addTodo()"> <!-- Telling the function "todoList.addTodo()" to fire when submit button is clicked -->
 					      <input ng-model="todoList.todoText" id="task" type="text" class="validate"> <!-- Setting form input value to "todoList.todoText" -->
