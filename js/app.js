@@ -8,11 +8,11 @@ angular.module("todoApp", [])
 		{ name: "Use my army to become supreme dictator of the world", done: false},
 	]
 
-	todoList.addTodo = function() { //Function that fires when submit button is clicked
+	todoList.addTodo = function() { //Function that fires when list submit button is clicked
 		todoList.todoItems.push( //Adds current input to todoList.todoItems
 			{ name: todoList.todoText, done: false }
 		)
-		todoList.todoText = ""; //Clears form input
+		todoList.todoText = ""; //Clears list form input
 	};
 
 	todoList.remove = function() { //Function that fires when remove button is clicked
@@ -37,8 +37,13 @@ angular.module("todoApp", [])
 		{name: "My Todo List"}
 	]
 	
-	todoList.changeTitle = function() { //Changes todoList.todoTitle to value of todoList.newTitle
-		todoList.todoTitle = [{ name: todoList.newTitle }]
+	todoList.changeTitle = function() { //Function that fires when title submit button is clicked
+		todoList.todoTitle = [] //Removes current title
+		todoList.todoTitle.push( //Pushes input of todoList.newTitle to todoList.TodoTitle
+			{ name: todoList.newTitle }
+		);
+		todoList.newTitle = ""; //Clears title form input
 	}
+
 
 });
